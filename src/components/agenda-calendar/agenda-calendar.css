@@ -1,0 +1,13 @@
+.calendar table{
+    width: 98%;
+}
+
+.calendar th {
+    padding: 20px 15px;
+    text-align: center;
+}
+
+.calendar td {
+    padding: 30px 15px;
+    text-align: center;
+}

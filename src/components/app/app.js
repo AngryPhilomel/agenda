@@ -5,6 +5,8 @@ import AgendaCalendar from "../agenda-calendar";
 import moment from "moment";
 import Moment from "react-moment";
 
+
+
 // Moment.globalFormat = 'D MMMM YYYY';
 var options = {
     era: 'long',
@@ -22,26 +24,33 @@ var options = {
 export default class App extends Component {
 
     state = {
-        year: new Date().getFullYear(),
-        month: new Date().getMonth()+1,
-        date: new Date().getDate(),
-        day: new Date().getDay(),
-        // today: moment.now(),
-        // month: moment().format('MMMM')
+        selectDate: new Date(),
+
     };
 
+    onPrevMonth = () =>{
+        let date = this.state.selectDate;
+        date.setDate(1);
+        date.setMonth(date.getMonth()-1);
+        this.setState({selectDate: date});
+    }
+
+    onNextMonth = () =>{
+        let date = this.state.selectDate;
+        date.setDate(1);
+        date.setMonth(date.getMonth()+1);
+        this.setState({selectDate: date});
+    }
+
     render() {
-        const {day, date, month, year} = this.state;
+        const {day, date, month, year, selectDate} = this.state;
         return(
             <div className="conteiner-fluid">
-            <AgendaHeader day={day}
-                          date={date}
-                          month={month}
-                          year={year}/>
-            <AgendaCalendar day={day}
-                            date={date}
-                            month={month}
-                            year={year}/>
+            <AgendaHeader selectDate={selectDate}
+                          onPrevMonth={this.onPrevMonth}
+                          onNextMonth={this.onNextMonth}/>
+            <AgendaCalendar selectDate={selectDate}
+                            />
             </div>
         );
     }
