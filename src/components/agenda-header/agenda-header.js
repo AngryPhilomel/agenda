@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Moment from 'react-moment';
 import 'moment/locale/ru';
-import moment from "moment";
 import 'moment-timezone';
 
 
@@ -15,7 +13,7 @@ export default class AgendaHeader extends Component {
             day: 'numeric',
             weekday: 'long'
         };
-        const {selectDate} = this.props;
+
         let today = new Date();
         today = today.toLocaleString("ru", options);
         return(
