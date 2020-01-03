@@ -1,5 +1,6 @@
 .calendar table{
-    width: 98%;
+    width: 96%;
+    table-layout: fixed;
 }
 
 .calendar th {
@@ -10,4 +11,5 @@
 .calendar td {
     padding: 30px 15px;
     text-align: center;
+    width: 100%;
 }
