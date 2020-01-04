@@ -11,9 +11,13 @@ import Week from "../week";
 
 export default class AgendaCalendar extends Component {
 
+    // state = {
+    //     mons:[],
+    // }
+
 
     ////////////////////////////////////////////////////////////////////////////////////
-    foundAllMon = (id) => {
+    foundAllMon = () => {
         let mons=[];
         let days_in_month = 33 - new Date(this.props.selectDate.getFullYear(), this.props.selectDate.getMonth(), 33).getDate();
         let date = new Date(this.props.selectDate.getFullYear(), this.props.selectDate.getMonth(), 1);
@@ -27,10 +31,35 @@ export default class AgendaCalendar extends Component {
             mons.push(last.getDate());
         }
         // alert(mons)
-        return mons[id];
+        // return mons[id];
+        return mons
+
     };
     ////////////////////////////////////////////////////////////////////////////////////
+
+
+    componentDidMount() {
+        // this.foundAllMon()
+    }
+
+
+    renderCal(arr) {
+        const {selectDate} = this.props;
+        return arr.map((mon) => {
+            return(
+                <Week year={selectDate.getFullYear()}
+                      month={selectDate.getMonth()}
+                      date={mon}
+                />
+            )
+        });
+    }
+
     render() {
+        // const {mons} = this.state
+        const mons = this.foundAllMon();
+        // alert(mons)
+        const cal = this.renderCal(mons);
         const {selectDate} = this.props;
         let days_in_month = 33 - new Date(selectDate.getFullYear(), selectDate.getMonth(), 33).getDate();
         let first_day_in_month = new Date(selectDate.getFullYear(), selectDate.getMonth(), 1).getDay();
@@ -55,26 +84,27 @@ export default class AgendaCalendar extends Component {
                                       month={selectDate.getMonth()}
                                      date={1}
                                       />
-                        <Week year={selectDate.getFullYear()}
-                              month={selectDate.getMonth()}
-                              date={this.foundAllMon(0)}
-                        />
-                        <Week year={selectDate.getFullYear()}
-                              month={selectDate.getMonth()}
-                              date={this.foundAllMon(1)}
-                        />
-                        <Week year={selectDate.getFullYear()}
-                              month={selectDate.getMonth()}
-                              date={this.foundAllMon(2)}
-                        />
-                        <Week year={selectDate.getFullYear()}
-                              month={selectDate.getMonth()}
-                              date={this.foundAllMon(3)}
-                        />
-                        <Week year={selectDate.getFullYear()}
-                              month={selectDate.getMonth()}
-                              date={this.foundAllMon(4)}
-                        />
+                        {cal}
+                        {/*<Week year={selectDate.getFullYear()}*/}
+                        {/*      month={selectDate.getMonth()}*/}
+                        {/*      date={this.foundAllMon(0)}*/}
+                        {/*/>*/}
+                        {/*<Week year={selectDate.getFullYear()}*/}
+                        {/*      month={selectDate.getMonth()}*/}
+                        {/*      date={this.foundAllMon(1)}*/}
+                        {/*/>*/}
+                        {/*<Week year={selectDate.getFullYear()}*/}
+                        {/*      month={selectDate.getMonth()}*/}
+                        {/*      date={this.foundAllMon(2)}*/}
+                        {/*/>*/}
+                        {/*<Week year={selectDate.getFullYear()}*/}
+                        {/*      month={selectDate.getMonth()}*/}
+                        {/*      date={this.foundAllMon(3)}*/}
+                        {/*/>*/}
+                        {/*<Week year={selectDate.getFullYear()}*/}
+                        {/*      month={selectDate.getMonth()}*/}
+                        {/*      date={this.foundAllMon(4)}*/}
+                        {/*/>*/}
 
 
 
