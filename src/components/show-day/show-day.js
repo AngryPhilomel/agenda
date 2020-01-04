@@ -6,52 +6,51 @@ const apiService = new ApiService();
 
 export default class ShowDay extends Component {
 
-    // state = {
-    //     event: null
-    // }
+    state = {
+        eventList: []
+    };
 
-    componentDidMount() {
+    getEvent() {
         const {year, month, date} = this.props;
         if (year > 0) {
             apiService.getDate(+year, +month + 1, +date)
                 .then((event) => {
-                    try {
-                        event.forEach((e) => {
-                            console.log(e.title)
-                        })
-
-                        } catch (e) {
-                        // console.log('пусто')
-                        }
+                    if (event)
+                    this.setState({eventList: event})
+                    // try {
+                    //     event.forEach((e) => {
+                    //         results.push(e)
+                    //         // console.log(results)
+                    //     })
+                    //
+                    //     } catch (e) {
+                    //     // console.log('пусто')
+                    //     }
 
                 });
         }
     }
-            // const res = apiService.getDate(+year, +month +1, +date)
-            //     console.log(res)
 
-
-
-
-    // getDate = (year, month, date) => {
-    //     if (year > 0) {
-    //         const res = apiService.getDate(year, month, date);
-    //         this.setState({
-    //             event: res
-    //         });
-    //         return res
-    //     }
-
-    // };
+    renderEvents(arr) {
+        return arr.map((event) => {
+            const {id} = event;
+            const {title} =event;
+            return(
+                <li key={id}>{title}</li>
+            )
+        });
+    }
 
 
     render() {
         const {date, month, year} = this.props;
+        this.getEvent();
+        const {eventList} = this.state;
+        const items = this.renderEvents(eventList);
+        // this.getEvent();
+        // const events = this.getEvent();
+        // console.log(events)
 
-        // if (year > 0) {
-        //     const res = this.getDate(+year, +month+1, +date);
-        //     console.log(res)
-        // }
 
 
         return (
@@ -59,6 +58,9 @@ export default class ShowDay extends Component {
                 onClick={()=>alert(`${+date}-${+month+1}-${+year}`)}
             >
                 {date}
+                <ul>{items}</ul>
+
+
 
             </td>
         );
