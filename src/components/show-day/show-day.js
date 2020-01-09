@@ -10,13 +10,23 @@ export default class ShowDay extends Component {
         eventList: []
     };
 
+    componentWillUnmount() {
+        this.setState({eventList: []})
+    }
+
     getEvent() {
         const {year, month, date} = this.props;
-        if (year > 0) {
+        // this.setState({eventList: []})
+        // if (year > 0) {
             apiService.getDate(+year, +month + 1, +date)
                 .then((event) => {
-                    if (event)
+                    if (event) {
+                        // console.log(event)
                     this.setState({eventList: event})
+                    }else{
+                        // this.setState({eventList: []})
+                    }
+
                     // try {
                     //     event.forEach((e) => {
                     //         results.push(e)
@@ -28,7 +38,7 @@ export default class ShowDay extends Component {
                     //     }
 
                 });
-        }
+        // }
     }
 
     renderEvents(arr) {
@@ -39,6 +49,10 @@ export default class ShowDay extends Component {
                 <li key={id}>{title}</li>
             )
         });
+    }
+
+    componentDidMount() {
+        this.setState({eventList: []})
     }
 
 
