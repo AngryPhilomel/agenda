@@ -10,8 +10,14 @@ export default class ShowDay extends Component {
         eventList: []
     };
 
-    componentWillUnmount() {
-        this.setState({eventList: []})
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return  this.props.month !== nextProps.month;
+
+    }
+
+    componentWillUpdate(nextProps, nextState, nextContext) {
+        this.setState({eventList: []});
     }
 
     getEvent() {
@@ -51,9 +57,6 @@ export default class ShowDay extends Component {
         });
     }
 
-    componentDidMount() {
-        this.setState({eventList: []})
-    }
 
 
     render() {
