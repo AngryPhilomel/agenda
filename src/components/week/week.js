@@ -35,7 +35,7 @@ export default class Week extends Component {
                 result.push({d:'',m:'',y:''})
             }
         }
-        console.log(result);
+        // console.log(result);
         return result
     };
 
