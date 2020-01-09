@@ -60,8 +60,6 @@ export default class ShowDay extends Component {
                 {date}
                 <ul>{items}</ul>
 
-
-
             </td>
         );
     }
