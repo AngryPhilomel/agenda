@@ -30,6 +30,9 @@ export default class AgendaCalendar extends Component {
         if (last.getDay()===1){
             mons.push(last.getDate());
         }
+        if(mons[0]!==1){
+            mons.unshift(1)
+        }
         // alert(mons)
         // return mons[id];
         return mons
@@ -80,33 +83,8 @@ export default class AgendaCalendar extends Component {
                                     <th>Суббота</th>
                                     <th>Воскресенье</th>
                                 </tr>
-                                <Week year={selectDate.getFullYear()}
-                                      month={selectDate.getMonth()}
-                                     date={1}
-                                      />
+
                         {cal}
-                        {/*<Week year={selectDate.getFullYear()}*/}
-                        {/*      month={selectDate.getMonth()}*/}
-                        {/*      date={this.foundAllMon(0)}*/}
-                        {/*/>*/}
-                        {/*<Week year={selectDate.getFullYear()}*/}
-                        {/*      month={selectDate.getMonth()}*/}
-                        {/*      date={this.foundAllMon(1)}*/}
-                        {/*/>*/}
-                        {/*<Week year={selectDate.getFullYear()}*/}
-                        {/*      month={selectDate.getMonth()}*/}
-                        {/*      date={this.foundAllMon(2)}*/}
-                        {/*/>*/}
-                        {/*<Week year={selectDate.getFullYear()}*/}
-                        {/*      month={selectDate.getMonth()}*/}
-                        {/*      date={this.foundAllMon(3)}*/}
-                        {/*/>*/}
-                        {/*<Week year={selectDate.getFullYear()}*/}
-                        {/*      month={selectDate.getMonth()}*/}
-                        {/*      date={this.foundAllMon(4)}*/}
-                        {/*/>*/}
-
-
 
                         </table>
 
