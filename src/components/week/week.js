@@ -49,37 +49,49 @@ export default class Week extends Component {
     // |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
-    getEvent(year, month, date) {
+      getEvent(year, month, date) {
         // const {year, month, date} = this.props;
         // this.setState({eventList: []})
-        try {
-            apiService.getDate(+year, +month + 1, +date)
-                .then((event) => {
-                    if (event) {
-                        // console.log(event);
-                        return (event)
-                    }else{
-                        return []
-                    }
 
-                });
-            }catch (e) {
-            console.log(e)
-        }
-        }
+             return apiService.getDate(+year, +month + 1, +date);
 
-    renderEvents(arr) {
-        console.log(arr);
-        if (arr) {
-            return arr.map((event) => {
-                const {id} = event;
-                const {title} = event;
-                // console.log(title);
-                return (
-                    <li key={id}>{title}</li>
-                )
-            });
+
+                // .then(event => {return [event]});
+                //     if (event) {
+                //         // console.log(event);
+                //         return (event)
+                //     }else{
+                //         return []
+                //     }
+                //
+                // });
+
+
+            // }catch (e) {
+            // console.log(e)
         }
+        // return (1)
+        // }
+
+     renderEvents(arr) {
+        // console.log(arr);
+        // try {
+         if (Array.isArray(arr)){
+             return arr.map((event) => {
+                 const {id} = event;
+                 const {title} = event;
+                 console.log(title);
+                 return (
+                     <li key={id}>{title}</li>
+                 )
+             });
+         }else {
+             return 1
+         }
+        // }catch (e) {
+            // console.log(e)
+
+        // }
     }
     // ||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -89,6 +101,8 @@ export default class Week extends Component {
             const {m} = day;
             const {y} = day;
             const i = this.getEvent(y, m, d);
+            i.then(event => this.renderEvents(event));
+            // console.log(t);
             const items = this.renderEvents(i);
             // console.log(items)
             // alert(d)
