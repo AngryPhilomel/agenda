@@ -32,7 +32,7 @@ export default class AgendaHeader extends Component {
                         <button className="btn btn-primary"
                                 type="submit"
                                 onClick={this.props.onNextMonth}
-                                onDoubleClickCapture={() => {alert('!')}}
+                                // onDoubleClickCapture={() => {alert('!')}}
                                 >Следующий</button>
                     </div>
                 </div>

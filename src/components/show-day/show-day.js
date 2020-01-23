@@ -7,7 +7,8 @@ const apiService = new ApiService();
 export default class ShowDay extends Component {
 
     state = {
-        eventList: []
+        eventList: [],
+        date:[]
     };
 
     componentDidMount() {
@@ -29,7 +30,8 @@ export default class ShowDay extends Component {
         apiService.getDate(+year, +month + 1, +date)
             .then((event) => {
                 if (event) {
-                    this.setState({eventList: event})
+                    this.setState({eventList: event,
+                                        date: date})
                 }
             });
     }
@@ -37,9 +39,9 @@ export default class ShowDay extends Component {
     renderEvents(arr) {
         return arr.map((event) => {
             const {id} = event;
-            const {title} =event;
+            const {who} = event;
             return(
-                <li key={id}>{title}</li>
+                <li key={id}>{who}</li>
             )
         });
     }
@@ -49,8 +51,10 @@ export default class ShowDay extends Component {
     render() {
         const {date, month, year} = this.props;
         const {eventList} = this.state;
-        const items = this.renderEvents(eventList);
-
+        let items = [];
+        if (this.state.date === date) {
+            items = this.renderEvents(eventList);
+        }
 
         return (
             <td
