@@ -12,10 +12,10 @@ export default class ApiService {
 
     getDate = async (year, month, date) => {
         const res = await this.getResourse(`/${year}/${month}/${date}/`);
-        if (res !== undefined) {
+        // if (res !== undefined) {
             // console.log(res);
-            return res;
-        }
+            return await res;
+        // }
 
     };
 }
