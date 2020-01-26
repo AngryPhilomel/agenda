@@ -48,6 +48,7 @@ export default class Week extends Component {
                 <ShowDay date={d}
                          month={m}
                          year={y}
+                         onChooseDay={this.props.onChooseDay}
                 />
             )
         });

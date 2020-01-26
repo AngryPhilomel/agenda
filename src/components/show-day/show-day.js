@@ -51,6 +51,7 @@ export default class ShowDay extends Component {
     render() {
         const {date, month, year} = this.props;
         const {eventList} = this.state;
+        const {onChooseDay} = this.props;
         let items = [];
         if (this.state.date === date) {
             items = this.renderEvents(eventList);
@@ -58,7 +59,7 @@ export default class ShowDay extends Component {
 
         return (
             <td
-                onClick={()=>alert(`${+date}-${+month+1}-${+year}`)}
+                onClick={() => onChooseDay(date, month, year)}
             >
                 {date}
                 <ul>{items}</ul>

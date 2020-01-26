@@ -25,11 +25,13 @@ export default class App extends Component {
     };
 
     onChooseDay = (d, m, y) =>{
+        if(y>0){
         let date = this.state.selectDate;
         date.setDate(d);
         date.setMonth(m);
         date.setFullYear(y);
         this.setState({selectDate: date});
+        }
     };
 
     render() {
@@ -43,7 +45,8 @@ export default class App extends Component {
                             onChooseDay={this.onChooseDay}
                             />
 
-                            <EventInfo selectDate={selectDate}/>
+                            <EventInfo selectDate={selectDate}
+                            date={selectDate.getDate()}/>
             </div>
         );
     }
