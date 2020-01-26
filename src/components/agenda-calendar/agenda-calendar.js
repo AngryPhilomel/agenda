@@ -53,6 +53,7 @@ export default class AgendaCalendar extends Component {
                 <Week year={selectDate.getFullYear()}
                       month={selectDate.getMonth()}
                       date={mon}
+
                 />
             )
         });
