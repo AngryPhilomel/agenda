@@ -38,10 +38,24 @@ export default class ShowDay extends Component {
 
     renderEvents(arr) {
         return arr.map((event) => {
-            const {id} = event;
+            const {who_id} = event;
             const {who} = event;
+            let style;
+
+            if (who_id === 1){
+                style = {backgroundColor: `#00FF00`, color: "white"}
+                } else if (who_id === 2){
+                style = {backgroundColor: `#4682B4`, color: "white"}
+                } else if (who_id === 3){
+                style = {backgroundColor: `#6A5ACD`, color: "white"}
+                } else if (who_id === 4){
+                style = {backgroundColor: `#FF0000`, color: "white"}
+                } else {
+                style = {backgroundColor: `#FFFF00`, color: "white"}
+                }
+
             return(
-                <li key={id}>{who}</li>
+                <div style={style} key={who_id}>{who}</div>
             )
         });
     }
@@ -62,7 +76,7 @@ export default class ShowDay extends Component {
                 onClick={() => onChooseDay(date, month, year)}
             >
                 {date}
-                <ul>{items}</ul>
+                <div>{items}</div>
 
             </td>
         );

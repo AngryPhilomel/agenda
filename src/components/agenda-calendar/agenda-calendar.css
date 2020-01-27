@@ -1,15 +1,22 @@
 .calendar table{
-    width: 100%;
+    /*width: 100%;*/
     table-layout: fixed;
 }
 
 .calendar th {
+    width: 100%;
     padding: 20px 15px;
     text-align: center;
 }
 
-.calendar td {
-    padding: 30px 15px;
+.calendar td div {
+    /*padding: 30px 15px;*/
     text-align: center;
-    width: 100%;
+    /*width: 100%;*/
+}
+
+.calendar td {
+    /*padding: 30px 15px;*/
+    text-align: right;
+    /*width: 100%;*/
 }

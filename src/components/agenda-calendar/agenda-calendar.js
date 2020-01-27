@@ -65,27 +65,47 @@ export default class AgendaCalendar extends Component {
         // alert(mons)
         const cal = this.renderCal(mons);
         const {selectDate} = this.props;
-        let days_in_month = 33 - new Date(selectDate.getFullYear(), selectDate.getMonth(), 33).getDate();
-        let first_day_in_month = new Date(selectDate.getFullYear(), selectDate.getMonth(), 1).getDay();
+
+        var options = {
+            year: 'numeric',
+            month: 'long',
+        };
+
+        let day = selectDate;
+        day = day.toLocaleString("ru", options);
+
 
         return (
             <div>
                 <div className='table-responsive calendar'>
                     <table className='table table-bordered'>
+                        <thead>
                         <tr>
-                            <td colSpan='7' className='text-center'><h4>{first_day_in_month} {days_in_month} {selectDate.getMonth()+1} {selectDate.getFullYear()}</h4></td>
+                            <th colSpan='7' className='text-center'><h4>{day}</h4></th>
                         </tr>
                                 <tr>
-                                    <th>Понедельник</th>
-                                    <th>Вторник</th>
-                                    <th>Среда</th>
-                                    <th>Четверг</th>
-                                    <th>Пятница</th>
-                                    <th>Суббота</th>
-                                    <th>Воскресенье</th>
+                                    <th><div className="d-none d-lg-block">Понедельник</div><div className="d-lg-none">ПН</div></th>
+                                    <th><div className="d-none d-lg-block">Вторник</div><div className="d-lg-none">ВТ</div></th>
+                                    <th><div className="d-none d-lg-block">Среда</div><div className="d-lg-none">СР</div></th>
+                                    <th><div className="d-none d-lg-block">Четверг</div><div className="d-lg-none">ЧТ</div></th>
+                                    <th><div className="d-none d-lg-block">Пятница</div><div className="d-lg-none">ПТ</div></th>
+                                    <th><div className="d-none d-lg-block">Суббота</div><div className="d-lg-none">СБ</div></th>
+                                    <th><div className="d-none d-lg-block">Воскресенье</div><div className="d-lg-none">ВС</div></th>
                                 </tr>
+                                {/*<tr className="d-lg-none">*/}
+                                {/*    <th>Пн</th>*/}
+                                {/*    <th>Вт</th>*/}
+                                {/*    <th>Ср</th>*/}
+                                {/*    <th>Чn</th>*/}
+                                {/*    <th>Пт</th>*/}
+                                {/*    <th>Сб</th>*/}
+                                {/*    <th>Вс</th>*/}
+                                {/*</tr>*/}
 
+                            </thead>
+                        <tbody>
                         {cal}
+                        </tbody>
 
                         </table>
 

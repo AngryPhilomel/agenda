@@ -37,16 +37,18 @@ export default class App extends Component {
     render() {
         const {selectDate} = this.state;
         return(
-            <div className="container-fluid">
+            <div className="container">
             <AgendaHeader onPrevMonth={this.onPrevMonth}
                           onNextMonth={this.onNextMonth}/>
+
 
             <AgendaCalendar selectDate={selectDate}
                             onChooseDay={this.onChooseDay}
                             />
 
-                            <EventInfo selectDate={selectDate}
+            <EventInfo selectDate={selectDate}
                             date={selectDate.getDate()}/>
+
             </div>
         );
     }
