@@ -12,16 +12,17 @@ export default class AgendaHeader extends Component {
             month: 'long',
             day: 'numeric',
             weekday: 'long'
+
         };
 
-        let today = new Date();
-        today = today.toLocaleString("ru", options);
+        // let today = this.props.selectDate;
+        // today = today.toLocaleString("ru", options);
         return(
             <nav className="navbar navbar-expand-lg ">
                 <div className="container">
                     <button className="btn btn-outline-primary my-sm-0" type="submit" onClick={this.props.onPrevMonth}>Предыдущий</button>
                     <div className='navbar-text text-center d-none d-lg-block'>
-                        <h3>{today}</h3>
+                        {/*<h3>{today}</h3>*/}
                     </div>
                     <button className="btn btn-outline-primary my-2 my-sm-0" type="submit" onClick={this.props.onNextMonth}>Следующий</button>
                 </div>

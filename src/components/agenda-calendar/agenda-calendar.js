@@ -6,14 +6,15 @@ import 'moment-timezone';
 import './agenda-calendar.css'
 
 import Week from "../week";
+import ApiService from "../../services/api-service";
 
-
+const apiService = new ApiService();
 
 export default class AgendaCalendar extends Component {
 
-    // state = {
-    //     mons:[],
-    // }
+    state = {
+        eventsDays:[],
+    };
 
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +43,7 @@ export default class AgendaCalendar extends Component {
 
 
     componentDidMount() {
-        // this.foundAllMon()
+        this.haveEvent()
     }
 
 
@@ -59,8 +60,32 @@ export default class AgendaCalendar extends Component {
         });
     }
 
+
+    haveEvent() {
+        const {selectDate} = this.props;
+        const year = selectDate.getFullYear();
+        const month = selectDate.getMonth();
+        apiService.haveEvents(year, month).then((day) => {
+            // console.log(day)
+            let arr = this.state.eventsDays;
+            arr.push(day);
+            this.setState({eventsDays:arr})
+        });
+        // console.log(this.state.eventsDays)
+    }
+
+    renderList(arr) {
+        arr.forEach((a) => console.log(a))
+        // console.log (qwer)
+
+
+    }
+
+
     render() {
         // const {mons} = this.state
+        // this.renderList(this.state.eventsDays);
+        // console.log(ev)
         const mons = this.foundAllMon();
         // alert(mons)
         const cal = this.renderCal(mons);
@@ -75,6 +100,9 @@ export default class AgendaCalendar extends Component {
         day = day.toLocaleString("ru", options);
 
 
+
+
+
         return (
             <div>
                 <div className='table-responsive calendar'>
@@ -84,23 +112,15 @@ export default class AgendaCalendar extends Component {
                             <th colSpan='7' className='text-center'><h4>{day}</h4></th>
                         </tr>
                                 <tr>
-                                    <th><div className="d-none d-lg-block">Понедельник</div><div className="d-lg-none">ПН</div></th>
-                                    <th><div className="d-none d-lg-block">Вторник</div><div className="d-lg-none">ВТ</div></th>
-                                    <th><div className="d-none d-lg-block">Среда</div><div className="d-lg-none">СР</div></th>
-                                    <th><div className="d-none d-lg-block">Четверг</div><div className="d-lg-none">ЧТ</div></th>
-                                    <th><div className="d-none d-lg-block">Пятница</div><div className="d-lg-none">ПТ</div></th>
-                                    <th><div className="d-none d-lg-block">Суббота</div><div className="d-lg-none">СБ</div></th>
-                                    <th><div className="d-none d-lg-block">Воскресенье</div><div className="d-lg-none">ВС</div></th>
+                                    <th><div>ПН</div></th>
+                                    <th><div>ВТ</div></th>
+                                    <th><div>СР</div></th>
+                                    <th><div>ЧТ</div></th>
+                                    <th><div>ПТ</div></th>
+                                    <th><div>СБ</div></th>
+                                    <th><div>ВС</div></th>
                                 </tr>
-                                {/*<tr className="d-lg-none">*/}
-                                {/*    <th>Пн</th>*/}
-                                {/*    <th>Вт</th>*/}
-                                {/*    <th>Ср</th>*/}
-                                {/*    <th>Чn</th>*/}
-                                {/*    <th>Пт</th>*/}
-                                {/*    <th>Сб</th>*/}
-                                {/*    <th>Вс</th>*/}
-                                {/*</tr>*/}
+
 
                             </thead>
                         <tbody>

@@ -34,6 +34,7 @@ export default class ShowDay extends Component {
                                         date: date})
                 }
             });
+
     }
 
     renderEvents(arr) {
@@ -51,7 +52,7 @@ export default class ShowDay extends Component {
                 } else if (who_id === 4){
                 style = {backgroundColor: `#FF0000`, color: "white"}
                 } else {
-                style = {backgroundColor: `#FFFF00`, color: "white"}
+                style = {backgroundColor: `#FFFF00`, color: "black"}
                 }
 
             return(

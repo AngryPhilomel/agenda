@@ -19,7 +19,7 @@ export default class EventInfo extends Component {
 
 
     componentDidUpdate(prevProps) {
-        if (this.props.date !== prevProps.date) {
+        if (this.props.date !== prevProps.date || this.props.month !== prevProps.month) {
             this.setState({eventList: []});
             this.getEvent();
         }

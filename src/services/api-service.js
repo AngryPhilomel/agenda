@@ -18,6 +18,11 @@ export default class ApiService {
         // }
 
     };
+
+    haveEvents = async (year, month) => {
+        const res = await this.getResourse(`/have/${year}/${month}/`);
+            return await res;
+    }
 }
 
 
