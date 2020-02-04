@@ -8,25 +8,37 @@ export default class ShowDay extends Component {
 
     state = {
         eventList: [],
-        date:[]
+        date:[],
+        promiseArr: []
     };
 
     componentDidMount() {
-        this.getEvent();
+        setTimeout(() => {
+            // console.log(this.props.promiseArr)
+            const {promiseArr} = this.props;
+            this.setState({promiseArr});
+            // console.log(this.props.promiseArr)
+            this.getEvent(this.state.promiseArr)
+        },1000)
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.date !== prevProps.date) {
-            this.setState({eventList: []});
-            this.getEvent();
+        if (this.props.year !== prevProps.year || this.props.month !== prevProps.month) {
+            this.setState({eventList: [],
+                                promiseArr:[]});
+            setTimeout(() => {
+            const {promiseArr} = this.props;
+            this.setState({promiseArr});
+            this.getEvent(this.state.promiseArr);
+                // console.log(promiseArr)
+            },1000)
         }
     }
 
 
-    getEvent() {
+    getEvent(promiseArr) {
         const {year, month, date} = this.props;
-        // this.setState({eventList: []})
-        // if (year > 0) {
+        if (Array.isArray(promiseArr) && promiseArr.includes(Number(date), 0)) {
         apiService.getDate(+year, +month + 1, +date)
             .then((event) => {
                 if (event) {
@@ -34,12 +46,13 @@ export default class ShowDay extends Component {
                                         date: date})
                 }
             });
-
+}
     }
 
     renderEvents(arr) {
         return arr.map((event) => {
             const {who_id} = event;
+            const {id} =event;
             const {who} = event;
             let style;
 
@@ -56,7 +69,7 @@ export default class ShowDay extends Component {
                 }
 
             return(
-                <div style={style} key={who_id}>{who}</div>
+                <div style={style} key={id}>{who}</div>
             )
         });
     }
@@ -65,6 +78,8 @@ export default class ShowDay extends Component {
 
     render() {
         const {date, month, year} = this.props;
+        // console.log(promiseArr)
+        // this.setState({promiseArr})
         const {eventList} = this.state;
         const {onChooseDay} = this.props;
         let items = [];
@@ -76,6 +91,7 @@ export default class ShowDay extends Component {
             <td
                 onClick={() => onChooseDay(date, month, year)}
             >
+                {/*<p>{promiseArr}</p>*/}
                 {date}
                 <div>{items}</div>
 

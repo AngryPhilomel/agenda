@@ -38,7 +38,7 @@ export default class Week extends Component {
         return result
     };
 
-    renderWeek(arr) {
+    renderWeek(arr, promiseArr) {
         return arr.map((day) => {
             const {d} = day;
             const {m} = day;
@@ -49,6 +49,7 @@ export default class Week extends Component {
                          month={m}
                          year={y}
                          onChooseDay={this.props.onChooseDay}
+                         promiseArr={promiseArr}
                 />
             )
         });
@@ -56,9 +57,9 @@ export default class Week extends Component {
 
 
     render() {
-        const {year,month,date} = this.props;
+        const {year,month,date, promiseArr} = this.props;
         const result = this.createCalendar(year,month,date);
-        const list = this.renderWeek(result);
+        const list = this.renderWeek(result, promiseArr);
 
 
 

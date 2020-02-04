@@ -46,49 +46,60 @@ export default class AgendaCalendar extends Component {
         this.haveEvent()
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.props.selectDate.getFullYear() !== prevProps.selectDate.getFullYear()){
+            this.haveEvent()
+        }
+    }
 
-    renderCal(arr) {
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     return (this.props.selectDate.getMonth() !== nextProps.selectDate.getMonth() || this.props.selectDate.getFullYear() !== nextProps.selectDate.getFullYear())
+    // }
+
+    renderCal(arr, promiseArr) {
+        // console.log(promiseArr)
         const {selectDate} = this.props;
+        // console.log(selectDate)
         return arr.map((mon) => {
             return(
                 <Week year={selectDate.getFullYear()}
                       month={selectDate.getMonth()}
                       date={mon}
+                      promiseArr={promiseArr}
                       onChooseDay={this.props.onChooseDay}
                 />
             )
         });
     }
-
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     haveEvent() {
         const {selectDate} = this.props;
         const year = selectDate.getFullYear();
         const month = selectDate.getMonth();
-        apiService.haveEvents(year, month).then((day) => {
-            // console.log(day)
-            let arr = this.state.eventsDays;
-            arr.push(day);
-            this.setState({eventsDays:arr})
+        apiService.haveEvents(year, month+1)
+            .then((day) => {
+            this.setState({eventsDays:day})
         });
-        // console.log(this.state.eventsDays)
+        console.log(`${year} ${month}`)
     }
 
     renderList(arr) {
-        arr.forEach((a) => console.log(a))
-        // console.log (qwer)
-
+        return arr.map((a) => {
+            const {day} = a;
+            return Number(day)
+        })
 
     }
 
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     render() {
-        // const {mons} = this.state
-        // this.renderList(this.state.eventsDays);
-        // console.log(ev)
+        let promiseArr = this.renderList(this.state.eventsDays);
+        // console.log(promiseArr)
         const mons = this.foundAllMon();
         // alert(mons)
-        const cal = this.renderCal(mons);
+        const cal = this.renderCal(mons, promiseArr);
         const {selectDate} = this.props;
 
         var options = {

@@ -28,8 +28,8 @@ export default class App extends Component {
     onChooseDay = (d, m, y) =>{
         if(y>0){
         let date = this.state.selectDate;
-        date.setDate(d);
         date.setMonth(m);
+        date.setDate(d);
         date.setFullYear(y);
         this.setState({selectDate: date});
         }
