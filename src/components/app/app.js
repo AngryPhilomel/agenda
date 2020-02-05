@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import AgendaHeader from "../agenda-header";
-import AgendaCalendar from "../agenda-calendar";
 import EventInfo from "../event-info";
 import AgendaYear from "../agenda-year";
+import AgendaYearHeader from "../agenda-year-header";
 
 export default class App extends Component {
 
@@ -32,6 +32,7 @@ export default class App extends Component {
         date.setDate(d);
         date.setFullYear(y);
         this.setState({selectDate: date});
+        window.scrollTo(document.documentElement.clientHeight, 0);
         }
     };
 
@@ -51,26 +52,28 @@ export default class App extends Component {
         const {selectDate} = this.state;
         return(
             <div className="container-fluid">
+
                 <div className="d-lg-none">
             <AgendaHeader onPrevMonth={this.onPrevMonth}
                           onNextMonth={this.onNextMonth}
                           selectDate={selectDate}/>
-
-
-            <AgendaCalendar selectDate={selectDate}
-                            onChooseDay={this.onChooseDay}
-                            />
                 </div>
+
+
+                <AgendaYearHeader onNextYear={this.onNextYear}
+                                  onPrevYear={this.onPrevYear}/>
+
+
             <EventInfo selectDate={selectDate}
                             date={selectDate.getDate()}
                             month={selectDate.getMonth()}/>
 
-                <div className="d-none d-lg-block">
+
+
+
             <AgendaYear selectDate={selectDate}
                         onChooseDay={this.onChooseDay}
-                        onNextYear={this.onNextYear}
-                        onPrevYear={this.onPrevYear}/>
-                </div>
+                        />
 
             </div>
         );

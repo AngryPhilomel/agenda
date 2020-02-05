@@ -81,7 +81,7 @@ export default class AgendaCalendar extends Component {
             .then((day) => {
             this.setState({eventsDays:day})
         });
-        console.log(`${year} ${month}`)
+        // console.log(`${year} ${month}`)
     }
 
     renderList(arr) {
