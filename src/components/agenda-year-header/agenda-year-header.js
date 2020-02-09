@@ -13,7 +13,9 @@ export default class AgendaYearHeader extends Component {
                 <div className="container">
                 <button className="btn btn-outline-primary my-sm-0" type="submit" onClick={this.props.onPrevYear}>Предыдущий год</button>
 
-                <button className="btn btn-outline-primary my-2 my-sm-0" type="submit" onClick={this.props.onNextYear}>Следующий год</button>
+                <button className="btn btn-outline-primary my-2 my-sm-0" type="submit" onClick={this.props.onNextYear}>Следующий год
+                    {/*<span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>*/}
+                </button>
                 </div>
             </div>
         );

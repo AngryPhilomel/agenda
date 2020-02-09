@@ -1,6 +1,6 @@
 export default class ApiService {
 
-    _apiBase = 'http://18.220.208.49/api';
+    _apiBase = 'http://10.80.36.150:90/api';
 
 
     getResourse = async (url) => {

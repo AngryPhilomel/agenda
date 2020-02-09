@@ -13,13 +13,12 @@ export default class AgendaYear extends Component {
 
     render() {
 
-        let active = "col-lg"
-        let nonActive = "col-lg d-none d-lg-block"
-        let isActive = this.props.selectDate.getMonth()
+        let active = "col-lg";
+        let nonActive = "col-lg d-none d-lg-block";
+        let isActive = this.props.selectDate.getMonth();
 
         return(
             <div>
-
 
             <div className="row">
                 <div className={isActive === 0 ? active : nonActive}>

@@ -69,12 +69,13 @@ export default class EventInfo extends Component {
         day = day.toLocaleString("ru",options);
 
         return (
-            <div className="card bg-light mb-3 qwer" >
+            <div className="card bg-light mb-3" >
                 <div className="card-header">{day}</div>
                 <div className="card-body">
                     <ul>{items}</ul>
                 </div>
             </div>
+
         );
     }
 };

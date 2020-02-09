@@ -19,7 +19,7 @@ export default class ShowDay extends Component {
             this.setState({promiseArr});
             // console.log(this.props.promiseArr)
             this.getEvent(this.state.promiseArr)
-        },1000)
+        },150)
     }
 
     componentDidUpdate(prevProps) {
@@ -31,7 +31,7 @@ export default class ShowDay extends Component {
             this.setState({promiseArr});
             this.getEvent(this.state.promiseArr);
                 // console.log(promiseArr)
-            },1000)
+            },150)
         }
     }
 

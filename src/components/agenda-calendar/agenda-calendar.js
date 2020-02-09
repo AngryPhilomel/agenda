@@ -85,10 +85,15 @@ export default class AgendaCalendar extends Component {
     }
 
     renderList(arr) {
-        return arr.map((a) => {
-            const {day} = a;
-            return Number(day)
-        })
+        try {
+            return arr.map((a) => {
+                const {day} = a;
+                return Number(day)
+            })
+        } catch (e) {
+            console.log('Ошибка БД!')
+        }
+
 
     }
 
